@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/SaratMaharjan/learn-node#readme",
   "devDependencies": {
+    "babel-preset-es2015": "^6.24.1",
+    "gulp": "^3.9.1",
     "nodemon": "^1.11.0"
   },
   "dependencies": {

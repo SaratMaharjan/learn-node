@@ -18,20 +18,22 @@ try {
 	fs.statSync(logFile);
 
 	const { name: fileName, ext: fileExt } = path.parse(logFile);
+
 	let i = 0;
 	let nextLogFile;
 
 	try {
 
 		do {
-			nextLogFile = `${fileName}_${++i}${fileExt}`;
+
+			nextLogFile = `${fileName}_${++i}${fileExt}`
+
 		} while(fs.statSync(nextLogFile));
 
 	} catch(err) {
 
 		fs.renameSync(logFile, nextLogFile);
-		console.log('log file was rotated');
-
+		console.log("log file rotated");
 	}
 
 } catch(err) {
@@ -54,7 +56,7 @@ const server = http.createServer((req, res) => {
 	// demo #2: using path functions to create requested file name
 	let dirName = path.dirname(req.path);
 	if (dirName.endsWith('/')) {
-		dirName = dirName.slice(0, dirName.length - 1);
+		dirName = dirName.slice(0, dirName.length -1);
 	}
 
 	const reqFileName = path.format({
@@ -62,36 +64,37 @@ const server = http.createServer((req, res) => {
 		base: path.basename(req.path)
 	});
 
+	console.log(reqFileName);
+
 	const processBody = new Promise(resolve => {
 
-		// demo #6: process request body data
+		resolve();
 
+		// demo #6: process request body data
 		if (req.method === 'POST') {
 
 			const reqBodyBuffers = [];
 
 			req.on('data', chunk => reqBodyBuffers.push(new Buffer(chunk)));
 
-			req.on('end', () => {
+			req.on('end', () => console.log(Buffer.concat(reqBodyBuffers).toString('utf8')));
 
-				console.log(Buffer.concat(reqBodyBuffers).toString('utf8'));
-
-				resolve();
-
-			});
+			resolve();
 
 		} else {
+
 			resolve();
+
 		}
 
 	});
 
 	const processFile = new Promise(resolve => {
 
-		// demo #3: read request file
+		// // demo #3: read request file
 		// fs.readFile(reqFileName, 'utf8', (err, fileData) => {
 
-		// 	if (err) {
+		// 	if(err) {
 		// 		error(err);
 		// 		res.writeHead(404);
 		// 		res.end();
@@ -99,23 +102,24 @@ const server = http.createServer((req, res) => {
 		// 	}
 
 		// 	info(`${req.method} ${req.originalUrl}`);
-
 		// 	res.writeHead(200);
 		// 	res.end(fileData);
 
 		// 	resolve();
 
-		// });
+		// })
 
 		// demo #7: compressing response
 
 		res.on('finish', () => {
-			info(`${req.method} ${req.originalUrl}`);
+
+			// 	info(`${req.method} ${req.originalUrl}`);
 			resolve();
+
 		});
 
 		const raw = fs.createReadStream(reqFileName);
-		res.writeHead(200, { 'Content-Encoding': 'gzip' });
+		res.writeHead( 200, { 'Content-Encoding': 'gzip'});
 		raw.pipe(zlib.createGzip()).pipe(res);
 
 	});

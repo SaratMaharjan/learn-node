@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "test": "mocha"
+    "test": "mocha",
+    "lenode": "learnyounode"
   },
   "repository": {
     "type": "git",
@@ -26,6 +27,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "bl": "^1.2.1",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
@@ -33,6 +35,8 @@
     "mongoose": "^4.10.1",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "strftime": "^0.10.0",
+    "through2-map": "^3.0.0"
   }
 }

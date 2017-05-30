@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "test": "mocha",
-    "lenode": "learnyounode"
+    "lenode": "learnyounode",
+    "lexp": "expressworks"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.0.0",
+    "expressworks": "^3.4.1",
     "gulp": "^3.9.1",
     "learnyounode": "^3.5.10",
     "mocha": "^3.4.2",

@@ -32,13 +32,16 @@
     "bl": "^1.2.1",
     "body-parser": "^1.17.2",
     "cookie-parser": "^1.4.3",
+    "crypto": "0.0.3",
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "mongoose": "^4.10.1",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
+    "pug": "^2.0.0-rc.1",
     "strftime": "^0.10.0",
+    "stylus": "^0.54.5",
     "through2-map": "^3.0.0"
   }
 }
